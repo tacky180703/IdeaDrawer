@@ -6,8 +6,8 @@ import { StyleSheet } from 'react-native'
 const _layout = () => {
   return (
     <Tabs tabBar={ CustomTabBar} screenOptions={{headerShown:false}}>
-      <Tabs.Screen name="index" />
-      <Tabs.Screen name="profile"/>
+      <Tabs.Screen name="index" options={{title:"Home"} } />
+      <Tabs.Screen name="project"/>
       <Tabs.Screen name="setting"/>
     </Tabs>
   )

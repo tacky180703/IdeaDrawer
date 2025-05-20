@@ -4,7 +4,8 @@ export const theme = {
     primaryDark: '#00ac62',
     dark: '#3e3e3e',
     darkLight: '#e1e1e1',
-    gray:'#e3e3e3',
+    gray: '#e3e3e3',
+    text: 'black'
   },
   fonts: {
     medium: '500' as const,

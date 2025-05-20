@@ -1,23 +1,43 @@
+import AddIcon from '@/assets/Icons/Add_Icon.svg'
 import ScreenWrapper from '@/components/ScreenWrapper'
+import { hp, wp } from '@/helpers/common'
+import { useRouter } from 'expo-router'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { theme } from '../../constants/theme'
 
-const index = () => {
+const Index = () => {
+  const router = useRouter();
   return (
     <ScreenWrapper>
       <View style={styles.container}>
-        <Text>index</Text>
+        <View style={styles.header}>
+          <Text style={styles.title}>Home</Text>
+          <Pressable onPress={()=>router.push('/newIdea')}>
+            <AddIcon width={24} height={24}/>
+          </Pressable>
+        </View>
       </View>
     </ScreenWrapper>
   )
 }
 
-export default index
+export default Index
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 10,
+    marginHorizontal:wp(4)
+  },
+  title: {
+    color: theme.colors.text,
+    fontSize: hp(3.2),
+    fontWeight: theme.fonts.extraBold
   }
 })

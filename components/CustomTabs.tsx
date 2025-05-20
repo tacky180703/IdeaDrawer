@@ -1,5 +1,6 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { theme } from '../constants/theme';
 
 export default function CustomTabBar({ state, navigation, descriptors }:BottomTabBarProps) {
   return (
@@ -26,16 +27,26 @@ export default function CustomTabBar({ state, navigation, descriptors }:BottomTa
           }
         };
 
-        // const onLongPress = () => {
-        //   navigation.emit({
-        //     type: "tabLongPress",
-        //     target: route.key,
-        //   });
-        // };
+        const onLongPress = () => {
+          navigation.emit({
+            type: "tabLongPress",
+            target: route.key,
+          });
+        };
 
         return (
-          <TouchableOpacity key={route.key} onPress={onPress} style={styles.tabButton}>
-            <Text style={{ color: isFocused ? '#3498db' : '#aaa', fontSize: 12 }}>{label}</Text>
+          <TouchableOpacity
+            accessibilityRole='button'
+            accessibilityState={isFocused ? { selected: true } : {}}
+            accessibilityLabel={options.tabBarAccessibilityLabel}
+            key={route.key}
+            onPress={onPress}
+            onLongPress={onLongPress}
+            style={styles.tabButton}
+          >
+            <Text style={{ color: isFocused ? '#3498db' : '#aaa'}}>
+              {label}
+            </Text>
           </TouchableOpacity>
         );
       })}
@@ -45,16 +56,25 @@ export default function CustomTabBar({ state, navigation, descriptors }:BottomTa
 
 const styles = StyleSheet.create({
   tabContainer: {
+    position: 'absolute',
+    bottom:25,
     flexDirection: 'row',
-    width:"100%",
-    height: 100,
-    backgroundColor: '#fff',
-    borderTopWidth: 0.5,
-    borderColor: '#ddd',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: 'white',
+    marginHorizontal: 20,
+    paddingVertical: 15,
+    borderRadius: theme.radius.xxl,
+    borderCurve: 'continuous',
+    shadowColor: theme.colors.dark,
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation:4,
   },
   tabButton: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
   },
 });
