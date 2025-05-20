@@ -1,11 +1,15 @@
+import CustomTabBar from '@/components/CustomTabs'
+import { Tabs } from 'expo-router'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 const _layout = () => {
   return (
-    <View>
-      <Text>_layout</Text>
-    </View>
+    <Tabs tabBar={ CustomTabBar} screenOptions={{headerShown:false}}>
+      <Tabs.Screen name="index" />
+      <Tabs.Screen name="profile"/>
+      <Tabs.Screen name="setting"/>
+    </Tabs>
   )
 }
 
